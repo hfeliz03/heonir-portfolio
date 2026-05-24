@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Heonir Feliz — Portfolio</title>
+  <meta name="description" content="Personal portfolio of Heonir Feliz — developer and dreamer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- ===================== NAV ===================== -->
+  <nav id="navbar" class="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">HF</a>
+      <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul id="nav-links" class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#hobbies">Beyond Code</a></li>
+        <li><a href="#photography">Photography</a></li>
+        <li><a href="#contact" class="nav-cta">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <section id="hero" class="hero">
+    <!-- animated leaf silhouettes rendered by CSS -->
+    <div class="hero-leaves" aria-hidden="true">
+      <div class="leaf leaf-1"></div>
+      <div class="leaf leaf-2"></div>
+      <div class="leaf leaf-3"></div>
+      <div class="leaf leaf-4"></div>
+      <div class="leaf leaf-5"></div>
+    </div>
+
+    <div class="hero-content reveal">
+      <div class="hero-photo-wrapper">
+        <img src="images/headshot.JPG" alt="Heonir Feliz" id="hero-photo" class="hero-photo" />
+      </div>
+      <p class="hero-greeting">Hola, I'm</p>
+      <h1 class="hero-name">Heonir Feliz</h1>
+      <p class="hero-tagline">Developer · Dreamer </p>
+      <a href="#about" class="hero-cta">Get to know me ↓</a>
+    </div>
+
+    <div class="hero-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path d="M0,64 C360,120 720,0 1080,64 C1260,96 1380,80 1440,64 L1440,120 L0,120 Z" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section id="about" class="section section-about">
+    <div class="container">
+      <h2 class="section-title reveal">About Me</h2>
+      <div class="about-layout reveal">
+        <div class="glass-card about-card">
+          <p>
+            I’m <strong>Heo</strong>, a developer and AI enthusiast from the <strong>Dominican Republic</strong> pursuing <strong>Computer Science and Mathematics</strong>. My journey into tech started as a kid in a small cyber café run by my aunt, where I grew up surrounded by computers, printers, photocopiers, and old video games handed down by my cousins.
+          </p>
+          <p>
+            What began as helping troubleshoot hardware and spending hours exploring the ins and outs of my PS2, Wii, and NDS became a deeper curiosity about how technology works beneath the surface. Today, I build software and AI-driven solutions with the same mindset that started years ago: <strong>understand systems deeply, solve meaningful problems, and create things that people genuinely enjoy using.</strong>
+          </p>
+        </div>
+        <div class="about-photo-wrapper">
+          <img src="images/sidepic.JPG" alt="Heonir Feliz" class="about-photo" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EDUCATION ===================== -->
+  <section id="education" class="section section-education">
+    <div class="container">
+      <h2 class="section-title reveal">Education</h2>
+      <div class="timeline">
+        <!-- ITEM 2 (duplicate for layout, editable) -->
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="glass-card timeline-card">
+            <img src="images/logos/UMass_primary_logo.png" alt="UMass Amherst" class="timeline-logo" />
+            <span class="timeline-date">2026 – 2026</span>
+            <h3>Master's Computer Science, AI Specialization</h3>
+            <p class="timeline-school">University of Massachusetts Amherst</p>
+            <p>4.0 GPA, Bay State Fellow.</p>
+          </div>
+        </div>
+        <!-- ITEM 1 -->
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="glass-card timeline-card">
+            <img src="images/logos/UMass_primary_logo.png" alt="UMass Amherst" class="timeline-logo" />
+            <span class="timeline-date">2022 – 2025</span>
+            <h3>Bachelor's in Computer Science & Mathematics</h3>
+            <p class="timeline-school">University of Massachusetts Amherst</p>
+            <p>3.8 GPA, S-STEM Scholar, Departamental Honors, Deans List (6x), SLOAN Fellow</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EXPERIENCE ===================== -->
+  <section id="experience" class="section section-experience">
+    <div class="container">
+      <h2 class="section-title reveal">Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="glass-card timeline-card">
+            <img src="images/logos/Bloomberg-Symbol.png" alt="Bloomberg" class="timeline-logo" />
+            <span class="timeline-date">Jan 2026 – May 2026</span>
+            <h3>AI Engineering Extern</h3>
+            <p class="timeline-school">Bloomberg — New York, NY</p>
+            <ul>
+              <li>Building an ingestion pipeline that converts complex legal cases into facts, enabling reliable
+                retrieval and modeling.</li>
+              <li>Training model to create case timeline interactive graph, linking entities so timeline is trustworthy
+                for analytics.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="glass-card timeline-card">
+            <img src="images/logos/GEALogo.avif" alt="GE Appliances" class="timeline-logo" />
+            <span class="timeline-date">2025 – Present</span>
+            <h3>AI Software Engineer Intern</h3>
+            <p class="timeline-school">General Electric Appliances</p>
+            <ul>
+              <li>Implemented Oracle chatbots, 24/7 support, cutting manual service by 30%, estimated saving $100K+
+                yearly.</li>
+              <li>Built LLM conversation flows, boosting response accuracy to 97%+ and cutting resolution time from 4min
+                to 1min.</li>
+              <li>President of 200+ intern cohort, managing professional development, volunteering, and communications
+                committees.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="glass-card timeline-card">
+            <img src="images/logos/Alnylam_logo.jpg" alt="Alnylam Pharmaceuticals" class="timeline-logo" />
+            <span class="timeline-date">May 2024 – Aug 2024</span>
+            <h3>Data Science Intern</h3>
+            <p class="timeline-school">Alnylam Pharmaceuticals</p>
+            <ul>
+              <li>Developed a live R Shiny application to visualize complex biological data, improving accessibility for
+                engineers.</li>
+              <li>Utilized pins with Posit Connect to create a real-time data update pipeline.</li>
+              <li>Automated data extraction and processing with Python win32com.client for SAS macro integration.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="glass-card timeline-card">
+            <img src="images/logos/UMass_primary_logo.png" alt="UMass Amherst" class="timeline-logo" />
+            <span class="timeline-date">Jul 2023 – Dec 2025</span>
+            <h3>Data Structures Teaching Assistant</h3>
+            <p class="timeline-school">University of Massachusetts Amherst</p>
+            <ul>
+              <li>Conducted 2 weekly sessions for 500+ students across 5 semesters, vastly enhancing grades through
+                tailored support.</li>
+              <li>Developed and presented a catalog of 80+ worksheets aligned with curriculum, reaching 2000+ downloads
+                each term.</li>
+              <li>Hosted 15 exam reviews (2 hrs each) for 1000+ live attendees; attendees achieved 20% higher exam
+                grades.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="glass-card timeline-card">
+            <img src="images/logos/UMass_primary_logo.png" alt="UMass Amherst" class="timeline-logo" />
+            <span class="timeline-date">Jul 2023 – May 2024</span>
+            <h3>Research Assistant - Human Computer Interaction</h3>
+            <p class="timeline-school">University of Massachusetts Amherst</p>
+            <ul>
+              <li>Conducted 2 weekly sessions for 500+ students across 5 semesters, vastly enhancing grades through
+                tailored support.</li>
+              <li>Developed and presented a catalog of 80+ worksheets aligned with curriculum, reaching 2000+ downloads
+                each term.</li>
+              <li>Hosted 15 exam reviews (2 hrs each) for 1000+ live attendees; attendees achieved 20% higher exam
+                grades.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROJECTS ===================== -->
+  <section id="projects" class="section section-projects">
+    <div class="container">
+      <h2 class="section-title reveal">Projects</h2>
+      <p class="section-sub reveal">Industry experience &amp; things I've built</p>
+      <div class="projects-grid">
+        <!-- Project card 1 -->
+        <div class="glass-card project-card reveal">
+          <div class="project-icon">🚀</div>
+          <h3>Project Name</h3>
+          <p>Brief description of the project, technologies used, and impact.</p>
+          <div class="project-tags">
+            <span class="tag">React</span>
+            <span class="tag">Node.js</span>
+          </div>
+        </div>
+        <!-- Project card 2 -->
+        <div class="glass-card project-card reveal">
+          <div class="project-icon">🎯</div>
+          <h3>Project Name</h3>
+          <p>Brief description of the project, technologies used, and impact.</p>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">ML</span>
+          </div>
+        </div>
+        <!-- Project card 3 -->
+        <div class="glass-card project-card reveal">
+          <div class="project-icon">🌐</div>
+          <h3>Project Name</h3>
+          <p>Brief description of the project, technologies used, and impact.</p>
+          <div class="project-tags">
+            <span class="tag">Unity</span>
+            <span class="tag">C#</span>
+          </div>
+        </div>
+        <!-- Project card 4 -->
+        <div class="glass-card project-card reveal">
+          <div class="project-icon">📱</div>
+          <h3>Project Name</h3>
+          <p>Brief description of the project, technologies used, and impact.</p>
+          <div class="project-tags">
+            <span class="tag">Flutter</span>
+            <span class="tag">Firebase</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CERTIFICATIONS ===================== -->
+  <section id="certifications" class="section section-certifications">
+    <div class="container">
+      <h2 class="section-title reveal">Certifications</h2>
+      <p class="section-sub reveal">Credentials &amp; continuous learning</p>
+
+      <div class="cert-carousel-wrapper reveal">
+        <div class="cert-track-container">
+          <div class="cert-track">
+
+            <!-- CERT 1: freeCodeCamp -->
+            <div class="cert-card glass-card">
+              <div class="cert-issuer-logo cert-logo--fcc">
+                <img src="images/logos/freeCodeCampLogo.png" alt="freeCodeCamp" class="cert-logo-img" />
+              </div>
+              <span class="cert-org">freeCodeCamp</span>
+              <h3 class="cert-name">Responsive Web Design</h3>
+              <p class="cert-desc">Covers HTML, CSS, Flexbox, CSS Grid, and accessibility best practices through 300+ hours of coursework.</p>
+              <a href="https://freecodecamp.org/certification/heonir_feliz/responsive-web-design" target="_blank" rel="noopener" class="cert-link">View Certificate ↗</a>
+            </div>
+
+            <!-- CERT 2:  -->
+            <div class="cert-card glass-card">
+              <div class="cert-issuer-logo cert-logo--deeplearning">
+                <img src="images/logos/DeepLearningAI.png" alt="DeepLearning.AI" class="cert-logo-img" />
+              </div>
+              <span class="cert-org">DeepLearning.AI / Stanford</span>
+              <h3 class="cert-name">Supervised Machine Learning: Regression and Classification</h3>
+                <p class="cert-desc">Build ML models in Python using scikit-learn. 
+                Build & train supervised ML models for prediction & binary classification tasks, including linear regression & logistic regression</p>
+              <a href="https://www.coursera.org/account/accomplishments/verify/HKTZXZQBMZSI" target="_blank" rel="noopener" class="cert-link">View Certificate ↗</a>
+            </div>
+
+            <!-- CERT 3: Oracle #2 -->
+            <div class="cert-card glass-card">
+              <div class="cert-issuer-logo cert-logo--oracle">
+                <img src="images/logos/Oracle_logo.svg.png" alt="Oracle" class="cert-logo-img" />
+              </div>
+              <span class="cert-org">Oracle</span>
+              <h3 class="cert-name">Introduction to Oracle Cloud Essentials</h3>
+              <p class="cert-desc">Complete Oracle Cloud Solution, Oracle Cloud Infrastructure and Oracle Cloud Applications. 
+                Learn the key features and components of OCI, identify the core OCI service offerings, and understand the OCI security model.
+                Define SaaS, discuss advantages of SaaS applications, review the complete Oracle SaaS portfolio of applications - ERP, SCM, HCM, Advertising & CX.</p>
+              <a href="https://www.coursera.org/account/accomplishments/verify/KFX1O7VKGHPB" target="_blank" rel="noopener" class="cert-link">View Certificate ↗</a>
+            </div>
+
+            <!-- CERT 4: Coursera #3 -->
+            <div class="cert-card glass-card">
+              <div class="cert-issuer-logo cert-logo--oracle">
+                <img src="images/logos/Oracle_logo.svg.png" alt="Oracle" class="cert-logo-img" />
+              </div>
+              <span class="cert-org">Oracle</span>
+              <h3 class="cert-name">Oracle Cloud Infrastructure AI Foundations</h3>
+              <p class="cert-desc">Understand AI concepts and workloads, explain ML concepts.
+                Explain Deep Learning concepts. You will understand the fundamentals of Generative AI and LLMs.
+                
+                Understand Oracle AI Stack, including Infrastructure, Data, ML and AI Services. Describe Oracle Generative AI services.</p>
+              <a href="https://www.coursera.org/account/accomplishments/verify/6ZYK0V79LPTO" target="_blank" rel="noopener" class="cert-link">View Certificate ↗</a>
+            </div>
+
+            <!-- CERT 5: -->
+            <div class="cert-card glass-card">
+              <div class="cert-issuer-logo cert-logo--deeplearning">
+                <img src="images/logos/DeepLearningAI.png" alt="DeepLearning.AI" class="cert-logo-img" />
+              </div>
+              <span class="cert-org">DeepLearning.AI / Stanford</span>
+              <h3 class="cert-name">Unsupervised Learning, Recommenders, Reinforcement Learning</h3>
+              <p class="cert-desc">Use unsupervised learning techniques for unsupervised learning: including clustering and anomaly detection
+                Build recommender systems with a collaborative filtering approach and a content-based deep learning method
+                Build a deep reinforcement learning model</p>
+              <a href="https://www.coursera.org/account/accomplishments/verify/ZDU8IWTFRE33" target="_blank" rel="noopener" class="cert-link">View Certificate ↗</a>
+            </div>
+
+            <!-- CERT 6: CodePath Foundations of AI Engineering -->
+            <div class="cert-card glass-card">
+              <div class="cert-issuer-logo cert-logo--codepath">
+                <img src="images/logos/CodePath-Logo-Circle.png" alt="CodePath" class="cert-logo-img" />
+              </div>
+              <span class="cert-org">CodePath &amp; Anthropic</span>
+              <h3 class="cert-name">Foundations of AI Engineering</h3>
+              <p class="cert-desc">~30 hrs of hands-on learning in Python, LLMs, RAG, prompt engineering, NLP, API integration, and AI system design.</p>
+              <a href="https://www.linkedin.com/in/heonir-feliz/" target="_blank" rel="noopener" class="cert-link">View on LinkedIn ↗</a>
+            </div>
+
+            <!-- CERT 7: CodePath Advanced Technical Interview Prep -->
+            <div class="cert-card glass-card">
+              <div class="cert-issuer-logo cert-logo--codepath">
+                <img src="images/logos/CodePath-Logo-Circle.png" alt="CodePath" class="cert-logo-img" />
+              </div>
+              <span class="cert-org">CodePath</span>
+              <h3 class="cert-name">Advanced Technical Interview Prep</h3>
+              <p class="cert-desc">12-week program (~60 hrs/week) in data structures, algorithms, system design, and behavioral interview preparation.</p>
+              <a href="https://www.linkedin.com/in/heonir-feliz/" target="_blank" rel="noopener" class="cert-link">View on LinkedIn ↗</a>
+            </div>
+
+          </div><!-- /.cert-track -->
+        </div><!-- /.cert-track-container -->
+      </div><!-- /.cert-carousel-wrapper -->
+
+      <div class="cert-dots" aria-label="Certification navigation"></div>
+
+    </div>
+  </section>
+
+  <!-- ===================== HOBBIES ===================== -->
+  <section id="hobbies" class="section section-hobbies">
+    <div class="container">
+      <h2 class="section-title reveal">When I'm Not at the Computer</h2>
+      <p class="section-sub reveal">You'll find me doing one of these</p>
+      <div class="hobbies-grid">
+        <!-- Hobby 1: Marathon -->
+        <div class="hobby-card reveal">
+          <div class="hobby-img-wrapper">
+            <img src="images/MarathonHeonirFeliz.jpg" alt="My first marathon!" loading="lazy" />
+          </div>
+          <div class="hobby-overlay">
+            <span class="hobby-emoji">🏃</span>
+            <h3>Long Distance Running</h3>
+          </div>
+        </div>
+        <!-- Hobby 2: Soccer -->
+        <div class="hobby-card reveal">
+          <div class="hobby-img-wrapper">
+            <img src="images/soccer.JPG" alt="Playing soccer on a green field" loading="lazy" />
+          </div>
+          <div class="hobby-overlay">
+            <span class="hobby-emoji">⚽</span>
+            <h3>Playing Soccer/Footvolley</h3>
+          </div>
+        </div>
+        <!-- Hobby 3: Reading -->
+        <div class="hobby-card reveal">
+          <div class="hobby-img-wrapper">
+            <img src="images/in_library.jpeg" alt="Reading a book in a cozy setting" loading="lazy" />
+          </div>
+          <div class="hobby-overlay">
+            <span class="hobby-emoji">📖</span>
+            <h3>Reading novels/comics/manga</h3>
+          </div>
+        </div>
+        <!-- Hobby 4: Telecaster -->
+        <div class="hobby-card reveal">
+          <div class="hobby-img-wrapper">
+            <img src="images/telecaster.png" alt="Playing a Fender Telecaster guitar" loading="lazy" />
+          </div>
+          <div class="hobby-overlay">
+            <span class="hobby-emoji">🎸</span>
+            <h3>Playing My Telecaster</h3>
+          </div>
+        </div>
+        <!-- Hobby 5: Bachata -->
+        <div class="hobby-card reveal">
+          <div class="hobby-img-wrapper">
+            <img src="images/dancing.jpg" alt="Dancing bachata/salsa/hiphop" loading="lazy" />
+          </div>
+          <div class="hobby-overlay">
+            <span class="hobby-emoji">💃</span>
+            <h3>Dancing on stage or for fun</h3>
+          </div>
+        </div>
+        <!-- Hobby 6: Photography (links to gallery below) -->
+        <a href="#photography" class="hobby-card hobby-card--link reveal" aria-label="Jump to my photography gallery">
+          <div class="hobby-img-wrapper">
+            <img src="images/photography.jpeg" alt="Photography" loading="lazy" />
+          </div>
+          <div class="hobby-overlay">
+            <span class="hobby-emoji">📸</span>
+            <h3>Photography — click to see my gallery</h3>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PHOTOGRAPHY ===================== -->
+  <section id="photography" class="section section-photography">
+    <div class="container">
+      <h2 class="section-title reveal">Photography <span class="photo-title-emoji" aria-hidden="true">📷</span></h2>
+      <p class="section-sub photo-sub reveal">“Some moments I thought were worth keeping.”</p>
+
+      <div class="photo-grid" id="photo-grid" aria-label="Photography gallery"></div>
+
+      <p class="photo-empty reveal" id="photo-empty" hidden>
+        No photos to show yet — drop images into <code>images/photographyCollection/</code> and they'll appear here.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== LIGHTBOX ===================== -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <button class="lightbox-btn lightbox-close" id="lightbox-close" aria-label="Close (Esc)">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <button class="lightbox-btn lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous photo (←)">
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </button>
+    <button class="lightbox-btn lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next photo (→)">
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+    </button>
+    <div class="lightbox-stage">
+      <img class="lightbox-img" id="lightbox-img" alt="" />
+      <div class="lightbox-meta">
+        <span class="lightbox-counter" id="lightbox-counter"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== CONTACT / FOOTER ===================== -->
+  <footer id="contact" class="footer">
+    <div class="container">
+      <h2 class="footer-title reveal">Let's Connect</h2>
+      <p class="footer-sub reveal">Whether it's a project, a novel rec, or just to say <em>Hey!</em></p>
+      <div class="footer-links reveal">
+        <a href="mailto:felizheonir@gmail.com" class="footer-link" aria-label="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="20" height="16" x="2" y="4" rx="2" />
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+          </svg>
+          <span>Email</span>
+        </a>
+        <a href="https://www.linkedin.com/in/heonir-feliz/" class="footer-link" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+            <rect width="4" height="12" x="2" y="9" />
+            <circle cx="4" cy="4" r="2" />
+          </svg>
+          <span>LinkedIn</span>
+        </a>
+        <a href="https://github.com/" class="footer-link" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+            <path d="M9 18c-4.51 2-5-2-7-2" />
+          </svg>
+          <span>GitHub</span>
+        </a>
+      </div>
+      <div class="footer-flag reveal" aria-label="Dominican Republic Flag">🇩🇴</div>
+      <p class="footer-copy">&copy; 2026 Heonir Feliz. Hecho con amor.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
