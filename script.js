@@ -78,10 +78,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const tx  = currentX * window.innerWidth  * d;
         let   ty  = currentY * window.innerHeight * d;
 
-        // Leaves fall downward on scroll; blobs stay put
+        // Leaves fall downward on scroll and accumulate at the bottom; blobs stay put
         if (wrap.classList.contains('leaf-wrap')) {
-          const fall = parseFloat(wrap.dataset.fall || '1');
-          ty += scrollRatio * heroH * fall;
+          const fall    = parseFloat(wrap.dataset.fall    || '1');
+          const maxFall = parseFloat(wrap.dataset.maxFall || '0.8');
+          ty += Math.min(scrollRatio * heroH * fall, heroH * maxFall);
         }
 
         wrap.style.transform = `translate(${tx}px, ${ty}px)`;
