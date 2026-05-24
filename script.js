@@ -53,6 +53,74 @@ document.addEventListener('DOMContentLoaded', () => {
     { passive: true }
   );
 
+  /* ---- Hero blob mouse parallax ---- */
+  const blobWraps = document.querySelectorAll('.hero-blob-wrap, .leaf-wrap');
+  if (blobWraps.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let targetX = 0, targetY = 0;
+    let currentX = 0, currentY = 0;
+    const LERP = 0.1; // 0 = no movement, 1 = instant — 0.1 is smooth but snappy
+
+    document.addEventListener('mousemove', (e) => {
+      targetX = (e.clientX / window.innerWidth  - 0.5) * 2;
+      targetY = (e.clientY / window.innerHeight - 0.5) * 2;
+    }, { passive: true });
+
+    const animateBlobs = () => {
+      currentX += (targetX - currentX) * LERP;
+      currentY += (targetY - currentY) * LERP;
+
+      // How far through the hero section the user has scrolled (0 → 1)
+      const heroH        = window.innerHeight;
+      const scrollRatio  = Math.min(window.scrollY / heroH, 1);
+
+      blobWraps.forEach((wrap) => {
+        const d   = parseFloat(wrap.dataset.depth || '0.05');
+        const tx  = currentX * window.innerWidth  * d;
+        let   ty  = currentY * window.innerHeight * d;
+
+        // Leaves fall downward on scroll; blobs stay put
+        if (wrap.classList.contains('leaf-wrap')) {
+          const fall = parseFloat(wrap.dataset.fall || '1');
+          ty += scrollRatio * heroH * fall;
+        }
+
+        wrap.style.transform = `translate(${tx}px, ${ty}px)`;
+      });
+      requestAnimationFrame(animateBlobs);
+    };
+    requestAnimationFrame(animateBlobs);
+  }
+
+  /* ---- Typewriter subtitle ---- */
+  const rotatingEl = document.querySelector('.tagline-rotating');
+  if (rotatingEl) {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      rotatingEl.textContent = 'AI Engineer';
+    } else {
+      const words = ['AI Engineer', 'Problem Solver', 'Teacher', 'Photographer', 'Builder', 'Dreamer', 'Human', 'Runner', 'Gymrat'];
+      let wIdx = 0, cIdx = 0, deleting = false;
+      const tick = () => {
+        const word = words[wIdx];
+        if (!deleting) {
+          rotatingEl.textContent = word.slice(0, ++cIdx);
+          if (cIdx === word.length) { deleting = true; setTimeout(tick, 2000); return; }
+          setTimeout(tick, 82);
+        } else {
+          rotatingEl.textContent = word.slice(0, --cIdx);
+          if (cIdx === 0) {
+            deleting = false;
+            wIdx = (wIdx + 1) % words.length;
+            setTimeout(tick, 380);
+            return;
+          }
+          setTimeout(tick, 44);
+        }
+      };
+      setTimeout(tick, 900);
+    }
+  }
+
   /* ---- Active nav link highlight ---- */
   const sections = document.querySelectorAll('section, footer#contact');
   const navAnchors = document.querySelectorAll('.nav-links a');
@@ -186,6 +254,12 @@ async function initPhotographyGallery() {
 
   if (filenames.length === 0) {
     if (emptyMsg) emptyMsg.hidden = false;
+    console.warn(
+      `[photography] No photos discovered in ${FOLDER}.\n` +
+      `• If you're opening index.html with file://, fetch() can't read directories.\n` +
+      `• If your host has no autoindex (e.g. GitHub Pages), run ./update-photo-manifest.sh\n` +
+      `  and commit the manifest.json so the gallery can load.`
+    );
     return;
   }
 

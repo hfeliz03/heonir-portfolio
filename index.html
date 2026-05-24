@@ -37,22 +37,33 @@
 
   <!-- ===================== HERO ===================== -->
   <section id="hero" class="hero">
+    <!-- ambient gradient blobs -->
+    <div class="hero-blobs" aria-hidden="true">
+      <div class="hero-blob-wrap" data-depth="0.06"><div class="hero-blob hero-blob-1"></div></div>
+      <div class="hero-blob-wrap" data-depth="-0.05"><div class="hero-blob hero-blob-2"></div></div>
+      <div class="hero-blob-wrap" data-depth="0.04"><div class="hero-blob hero-blob-3"></div></div>
+      <div class="hero-blob-wrap" data-depth="-0.07"><div class="hero-blob hero-blob-4"></div></div>
+      <div class="hero-blob-wrap" data-depth="0.03"><div class="hero-blob hero-blob-5"></div></div>
+    </div>
+
     <!-- animated leaf silhouettes rendered by CSS -->
     <div class="hero-leaves" aria-hidden="true">
-      <div class="leaf leaf-1"></div>
-      <div class="leaf leaf-2"></div>
-      <div class="leaf leaf-3"></div>
-      <div class="leaf leaf-4"></div>
-      <div class="leaf leaf-5"></div>
+      <div class="leaf-wrap" data-depth="0.08"  data-fall="1.1"><div class="leaf leaf-1"></div></div>
+      <div class="leaf-wrap" data-depth="-0.10" data-fall="0.7"><div class="leaf leaf-2"></div></div>
+      <div class="leaf-wrap" data-depth="0.06"  data-fall="1.4"><div class="leaf leaf-3"></div></div>
+      <div class="leaf-wrap" data-depth="-0.07" data-fall="0.9"><div class="leaf leaf-4"></div></div>
+      <div class="leaf-wrap" data-depth="0.05"  data-fall="1.6"><div class="leaf leaf-5"></div></div>
+      <div class="leaf-wrap" data-depth="-0.09" data-fall="0.6"><div class="leaf leaf-6"></div></div>
+      <div class="leaf-wrap" data-depth="0.11"  data-fall="1.2"><div class="leaf leaf-7"></div></div>
     </div>
 
     <div class="hero-content reveal">
       <div class="hero-photo-wrapper">
         <img src="images/headshot.JPG" alt="Heonir Feliz" id="hero-photo" class="hero-photo" />
       </div>
-      <p class="hero-greeting">Hola, I'm</p>
+      <p class="hero-greeting">Hola, I'm:</p>
       <h1 class="hero-name">Heonir Feliz</h1>
-      <p class="hero-tagline">Developer · Dreamer </p>
+      <p class="hero-tagline" aria-label="Developer">Developer&thinsp;·&thinsp;<span class="tagline-rotating" aria-live="polite"></span><span class="tagline-cursor" aria-hidden="true"></span></p>
       <a href="#about" class="hero-cta">Get to know me ↓</a>
     </div>
 

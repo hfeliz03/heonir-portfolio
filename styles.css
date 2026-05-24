@@ -174,6 +174,91 @@ img { max-width: 100%; display: block; }
 .nav-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* ============================================================
+   HERO BLOBS
+   ============================================================ */
+.hero-blobs {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.hero-blob-wrap {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+.hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+}
+
+.hero-blob-1 {
+  width: 65vmin; height: 65vmin;
+  background: radial-gradient(circle, rgba(0,151,167,.38) 0%, transparent 70%);
+  filter: blur(72px);
+  top: -10%; left: -10%;
+  animation: blob-drift-1 8s ease-in-out infinite;
+}
+.hero-blob-2 {
+  width: 55vmin; height: 55vmin;
+  background: radial-gradient(circle, rgba(206,17,38,.26) 0%, transparent 70%);
+  filter: blur(64px);
+  top: 10%; right: -8%;
+  animation: blob-drift-2 10s ease-in-out infinite;
+}
+.hero-blob-3 {
+  width: 48vmin; height: 48vmin;
+  background: radial-gradient(circle, rgba(0,45,98,.45) 0%, transparent 70%);
+  filter: blur(56px);
+  bottom: 5%; left: 35%;
+  animation: blob-drift-3 7s ease-in-out infinite;
+}
+.hero-blob-4 {
+  width: 40vmin; height: 40vmin;
+  background: radial-gradient(circle, rgba(255,152,0,.20) 0%, transparent 70%);
+  filter: blur(60px);
+  top: 50%; left: 10%;
+  animation: blob-drift-4 9s ease-in-out infinite;
+}
+.hero-blob-5 {
+  width: 38vmin; height: 38vmin;
+  background: radial-gradient(circle, rgba(77,208,225,.22) 0%, transparent 70%);
+  filter: blur(50px);
+  bottom: 20%; right: 20%;
+  animation: blob-drift-5 11s ease-in-out infinite;
+}
+
+@keyframes blob-drift-1 {
+  0%, 100% { transform: translate(0,     0)    scale(1);    }
+  33%       { transform: translate(8vw,  -5vh)  scale(1.08); }
+  66%       { transform: translate(-5vw,  7vh)  scale(0.94); }
+}
+@keyframes blob-drift-2 {
+  0%, 100% { transform: translate(0,     0)    scale(1);    }
+  33%       { transform: translate(-7vw,  5vh)  scale(1.10); }
+  66%       { transform: translate(5vw,  -6vh)  scale(0.92); }
+}
+@keyframes blob-drift-3 {
+  0%, 100% { transform: translate(0,    0)    scale(1);    }
+  33%       { transform: translate(6vw,  6vh)  scale(1.07); }
+  66%       { transform: translate(-6vw,-4vh)  scale(0.95); }
+}
+@keyframes blob-drift-4 {
+  0%, 100% { transform: translate(0,    0)    scale(1);    }
+  33%       { transform: translate(7vw, -7vh)  scale(1.09); }
+  66%       { transform: translate(-4vw, 5vh)  scale(0.93); }
+}
+@keyframes blob-drift-5 {
+  0%, 100% { transform: translate(0,    0)    scale(1);    }
+  33%       { transform: translate(-5vw,-5vh)  scale(1.06); }
+  66%       { transform: translate(6vw,  4vh)  scale(0.96); }
+}
+
+/* ============================================================
    HERO
    ============================================================ */
 .hero {
@@ -184,11 +269,7 @@ img { max-width: 100%; display: block; }
   justify-content: center;
   text-align: center;
   overflow: hidden;
-  background:
-    radial-gradient(ellipse at 20% 80%, rgba(0,151,167,.25) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgba(206,17,38,.15) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 50%, rgba(0,45,98,.3) 0%, transparent 70%),
-    linear-gradient(180deg, #0a0e17 0%, #0c1a2e 50%, #0a0e17 100%);
+  background: linear-gradient(180deg, #0a0e17 0%, #0c1a2e 50%, #0a0e17 100%);
 }
 
 /* Tropical leaf silhouettes */
@@ -199,27 +280,71 @@ img { max-width: 100%; display: block; }
   pointer-events: none;
 }
 
+/* Leaf parallax wrapper — JS drives translate, CSS drives animation */
+.leaf-wrap {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
 .leaf {
   position: absolute;
   border-radius: 0 80% 0 80%;
-  opacity: .07;
   background: var(--palm-green);
 }
-.leaf-1 { width: 320px; height: 140px; top: 10%; left: -60px; transform: rotate(-30deg); animation: sway 6s ease-in-out infinite; }
-.leaf-2 { width: 260px; height: 110px; top: 20%; right: -40px; transform: rotate(25deg); animation: sway 7s ease-in-out infinite reverse; background: var(--ocean-teal); }
-.leaf-3 { width: 200px; height: 80px;  bottom: 25%; left: 5%;  transform: rotate(-15deg); animation: sway 8s ease-in-out infinite; }
-.leaf-4 { width: 280px; height: 120px; bottom: 15%; right: 2%; transform: rotate(35deg); animation: sway 6.5s ease-in-out infinite reverse; background: var(--palm-light); }
-.leaf-5 { width: 180px; height: 70px;  top: 55%; left: 40%;   transform: rotate(-45deg); animation: sway 9s ease-in-out infinite; background: var(--ocean-teal); opacity: .04; }
 
-@keyframes sway {
-  0%, 100% { transform: rotate(var(--r, -30deg)) translateX(0); }
-  50%      { transform: rotate(var(--r, -30deg)) translateX(18px); }
+/* Individual leaf positions, sizes, colors, opacity */
+.leaf-1 { width: 340px; height: 150px; top: 8%;   left: -70px;  background: var(--palm-green);  opacity: .15; animation: leaf-1 5s ease-in-out infinite; }
+.leaf-2 { width: 280px; height: 115px; top: 18%;  right: -50px; background: var(--ocean-teal);  opacity: .13; animation: leaf-2 4.5s ease-in-out infinite; }
+.leaf-3 { width: 210px; height: 85px;  bottom: 22%; left: 3%;   background: var(--palm-light);  opacity: .12; animation: leaf-3 6s ease-in-out infinite; }
+.leaf-4 { width: 300px; height: 125px; bottom: 12%; right: 1%;  background: var(--palm-green);  opacity: .14; animation: leaf-4 5.5s ease-in-out infinite; }
+.leaf-5 { width: 190px; height: 75px;  top: 52%;  left: 38%;   background: var(--ocean-teal);  opacity: .10; animation: leaf-5 7s ease-in-out infinite; }
+.leaf-6 { width: 160px; height: 65px;  top: 5%;   left: 55%;   background: var(--palm-light);  opacity: .11; animation: leaf-6 4s ease-in-out infinite; }
+.leaf-7 { width: 240px; height: 100px; bottom: 35%; right: 8%; background: var(--ocean-teal);  opacity: .09; animation: leaf-7 6.5s ease-in-out infinite; }
+
+/* Per-leaf keyframes — each with unique rotation, float, and scale arc */
+@keyframes leaf-1 {
+  0%   { transform: rotate(-30deg) translate(0,    0)   scale(1);    }
+  25%  { transform: rotate(-22deg) translate(30px,-20px) scale(1.08); }
+  50%  { transform: rotate(-34deg) translate(50px, 10px) scale(0.95); }
+  75%  { transform: rotate(-18deg) translate(20px,-30px) scale(1.05); }
+  100% { transform: rotate(-30deg) translate(0,    0)   scale(1);    }
 }
-.leaf-1 { --r: -30deg; }
-.leaf-2 { --r: 25deg; }
-.leaf-3 { --r: -15deg; }
-.leaf-4 { --r: 35deg; }
-.leaf-5 { --r: -45deg; }
+@keyframes leaf-2 {
+  0%   { transform: rotate(25deg)  translate(0,    0)    scale(1);    }
+  30%  { transform: rotate(38deg)  translate(-35px, 25px) scale(1.10); }
+  60%  { transform: rotate(18deg)  translate(-15px,-20px) scale(0.93); }
+  100% { transform: rotate(25deg)  translate(0,    0)    scale(1);    }
+}
+@keyframes leaf-3 {
+  0%   { transform: rotate(-15deg) translate(0,    0)    scale(1);    }
+  40%  { transform: rotate(-8deg)  translate(40px,-25px) scale(1.07); }
+  70%  { transform: rotate(-24deg) translate(15px, 20px) scale(0.96); }
+  100% { transform: rotate(-15deg) translate(0,    0)    scale(1);    }
+}
+@keyframes leaf-4 {
+  0%   { transform: rotate(35deg)  translate(0,    0)    scale(1);    }
+  35%  { transform: rotate(48deg)  translate(-40px,-30px) scale(1.09); }
+  65%  { transform: rotate(22deg)  translate(-10px, 25px) scale(0.94); }
+  100% { transform: rotate(35deg)  translate(0,    0)    scale(1);    }
+}
+@keyframes leaf-5 {
+  0%   { transform: rotate(-45deg) translate(0,    0)   scale(1);    }
+  50%  { transform: rotate(-30deg) translate(35px,-35px) scale(1.12); }
+  100% { transform: rotate(-45deg) translate(0,    0)   scale(1);    }
+}
+@keyframes leaf-6 {
+  0%   { transform: rotate(15deg)  translate(0,    0)    scale(1);    }
+  25%  { transform: rotate(28deg)  translate(-20px, 30px) scale(1.08); }
+  55%  { transform: rotate(5deg)   translate(25px,-15px)  scale(0.92); }
+  100% { transform: rotate(15deg)  translate(0,    0)    scale(1);    }
+}
+@keyframes leaf-7 {
+  0%   { transform: rotate(-55deg) translate(0,    0)    scale(1);    }
+  45%  { transform: rotate(-40deg) translate(-30px,-25px) scale(1.06); }
+  80%  { transform: rotate(-65deg) translate(20px,  20px) scale(0.97); }
+  100% { transform: rotate(-55deg) translate(0,    0)    scale(1);    }
+}
 
 /* Hero content */
 .hero-content {
@@ -292,6 +417,22 @@ img { max-width: 100%; display: block; }
   color: var(--text-secondary);
   margin-bottom: var(--space-md);
   letter-spacing: .3px;
+}
+
+/* Typewriter cursor */
+.tagline-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 0.82em;
+  background: var(--ocean-light);
+  border-radius: 1px;
+  margin-left: 1px;
+  vertical-align: middle;
+  animation: cursor-blink 1s step-end infinite;
+}
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
 }
 
 .hero-cta {
@@ -850,6 +991,43 @@ img { max-width: 100%; display: block; }
 .projects-grid .reveal:nth-child(2) { transition-delay: .1s; }
 .projects-grid .reveal:nth-child(3) { transition-delay: .2s; }
 .projects-grid .reveal:nth-child(4) { transition-delay: .3s; }
+
+/* Timeline stagger */
+.timeline-item:nth-child(1) { transition-delay: 0s;   }
+.timeline-item:nth-child(2) { transition-delay: .12s; }
+.timeline-item:nth-child(3) { transition-delay: .24s; }
+.timeline-item:nth-child(4) { transition-delay: .36s; }
+.timeline-item:nth-child(5) { transition-delay: .48s; }
+
+/* About section: text slides from left, photo from right */
+.about-layout .about-card {
+  opacity: 0;
+  transform: translateX(-28px);
+  transition: opacity .7s var(--ease-out), transform .7s var(--ease-out);
+}
+.about-layout .about-photo-wrapper {
+  opacity: 0;
+  transform: translateX(28px);
+  transition: opacity .7s var(--ease-out) .12s, transform .7s var(--ease-out) .12s;
+}
+.about-layout.visible .about-card,
+.about-layout.visible .about-photo-wrapper {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Reduced motion — disable all decorative animation */
+@media (prefers-reduced-motion: reduce) {
+  .hero-blob, .leaf        { animation: none !important; }
+  .tagline-cursor          { animation: none !important; opacity: 1; }
+  .about-layout .about-card,
+  .about-layout .about-photo-wrapper { transition: none !important; }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
 
 /* ============================================================
    RESPONSIVE — TABLET
