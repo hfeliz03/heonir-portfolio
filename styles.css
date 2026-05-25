@@ -276,7 +276,6 @@ img { max-width: 100%; display: block; }
 .hero-leaves {
   position: absolute;
   inset: 0;
-  overflow: hidden;
   pointer-events: none;
 }
 
@@ -653,6 +652,77 @@ img { max-width: 100%; display: block; }
   margin-top: 4px;
 }
 
+.timeline-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 12px 0 14px;
+}
+.stat-chip {
+  flex: 1 1 auto;
+  min-width: 90px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  background: rgba(0,151,167,.08);
+  border: 1px solid rgba(0,151,167,.22);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  transition: transform .35s var(--ease-spring), background .35s, border-color .35s;
+}
+.stat-chip:hover {
+  background: rgba(0,151,167,.14);
+  border-color: rgba(0,151,167,.4);
+  transform: translateY(-2px);
+}
+.stat-num {
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1.35rem;
+  line-height: 1;
+  color: var(--ocean-light);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.01em;
+}
+.stat-num.stat-static {
+  font-size: 1.05rem;
+  letter-spacing: 0;
+}
+.stat-label {
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+/* Grid layout on wider screens — uses horizontal space so the section is
+   less scrolly. Mobile keeps the original vertical timeline. */
+@media (min-width: 769px) {
+  .timeline {
+    max-width: none;
+    padding-left: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
+  .timeline::before { content: none; }
+  .timeline-dot { display: none; }
+  .timeline-item { margin-bottom: 0; }
+  .timeline-card { height: 100%; }
+}
+
+@media (min-width: 1100px) {
+  .timeline { grid-template-columns: repeat(3, 1fr); }
+  /* Education only ever has 2 entries — keep it 2-col and centered. */
+  #education .timeline {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 760px;
+    margin-inline: auto;
+  }
+}
+
 /* ============================================================
    PROJECTS GRID
    ============================================================ */
@@ -998,6 +1068,7 @@ img { max-width: 100%; display: block; }
 .timeline-item:nth-child(3) { transition-delay: .24s; }
 .timeline-item:nth-child(4) { transition-delay: .36s; }
 .timeline-item:nth-child(5) { transition-delay: .48s; }
+.timeline-item:nth-child(6) { transition-delay: .60s; }
 
 /* About section: text slides from left, photo from right */
 .about-layout .about-card {

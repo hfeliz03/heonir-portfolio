@@ -20,6 +20,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
   revealEls.forEach((el) => revealObserver.observe(el));
 
+  /* ---- Stat count-up on scroll-in ---- */
+  const statCards = document.querySelectorAll('.timeline-card');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const renderStat = (el, value) => {
+    const decimals = parseInt(el.dataset.decimals || '0', 10);
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    el.textContent = `${prefix}${value.toFixed(decimals)}${suffix}`;
+  };
+
+  const animateStats = (card) => {
+    const nums = card.querySelectorAll('.stat-num[data-target]');
+    nums.forEach((el) => {
+      if (el.dataset.animated === 'true') return;
+      el.dataset.animated = 'true';
+      const target = parseFloat(el.dataset.target);
+      if (reduceMotion) { renderStat(el, target); return; }
+      const duration = 1200;
+      const start = performance.now();
+      const tick = (now) => {
+        const t = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - t, 3);
+        renderStat(el, target * eased);
+        if (t < 1) requestAnimationFrame(tick);
+        else renderStat(el, target);
+      };
+      requestAnimationFrame(tick);
+    });
+  };
+
+  const statObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateStats(entry.target);
+          statObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.35 }
+  );
+
+  statCards.forEach((card) => {
+    if (card.querySelector('.stat-num[data-target]')) statObserver.observe(card);
+  });
+
   /* ---- Mobile Nav Toggle ---- */
   const toggle = document.getElementById('nav-toggle');
   const navLinks = document.getElementById('nav-links');
@@ -82,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (wrap.classList.contains('leaf-wrap')) {
           const fall    = parseFloat(wrap.dataset.fall    || '1');
           const maxFall = parseFloat(wrap.dataset.maxFall || '0.8');
-          ty += Math.min(scrollRatio * heroH * fall, heroH * maxFall);
+          ty += Math.min(scrollRatio * heroH * fall * 5, heroH * maxFall);
         }
 
         wrap.style.transform = `translate(${tx}px, ${ty}px)`;
