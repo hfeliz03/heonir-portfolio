@@ -20,53 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   revealEls.forEach((el) => revealObserver.observe(el));
 
-  /* ---- Stat count-up on scroll-in ---- */
-  const statCards = document.querySelectorAll('.timeline-card');
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  const renderStat = (el, value) => {
-    const decimals = parseInt(el.dataset.decimals || '0', 10);
-    const prefix = el.dataset.prefix || '';
-    const suffix = el.dataset.suffix || '';
-    el.textContent = `${prefix}${value.toFixed(decimals)}${suffix}`;
-  };
-
-  const animateStats = (card) => {
-    const nums = card.querySelectorAll('.stat-num[data-target]');
-    nums.forEach((el) => {
-      if (el.dataset.animated === 'true') return;
-      el.dataset.animated = 'true';
-      const target = parseFloat(el.dataset.target);
-      if (reduceMotion) { renderStat(el, target); return; }
-      const duration = 1200;
-      const start = performance.now();
-      const tick = (now) => {
-        const t = Math.min(1, (now - start) / duration);
-        const eased = 1 - Math.pow(1 - t, 3);
-        renderStat(el, target * eased);
-        if (t < 1) requestAnimationFrame(tick);
-        else renderStat(el, target);
-      };
-      requestAnimationFrame(tick);
-    });
-  };
-
-  const statObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          animateStats(entry.target);
-          statObserver.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.35 }
-  );
-
-  statCards.forEach((card) => {
-    if (card.querySelector('.stat-num[data-target]')) statObserver.observe(card);
-  });
-
   /* ---- Mobile Nav Toggle ---- */
   const toggle = document.getElementById('nav-toggle');
   const navLinks = document.getElementById('nav-links');
@@ -101,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
   );
 
   /* ---- Hero blob mouse parallax ---- */
-  const blobWraps = document.querySelectorAll('.hero-blob-wrap, .leaf-wrap');
+  const blobWraps = document.querySelectorAll('.hero-blob-wrap, .leaf-wrap, .shape-wrap');
   if (blobWraps.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     let targetX = 0, targetY = 0;
     let currentX = 0, currentY = 0;
@@ -278,6 +231,19 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ============================================================
+     LEETCODE LIVE COUNT
+     - Reads stats.json at the repo root — this file is maintained
+       by LeetCode's official "Sync to GitHub" integration and is
+       the authoritative source (folder counting double-counts due
+       to dual naming conventions + auto-generated READMEs).
+       Total = leetcode.easy + leetcode.medium + leetcode.hard.
+     - Served via raw.githubusercontent.com (CDN, no GitHub API
+       rate limit, CORS open). Cached locally for 6h.
+     - Animates up when the card scrolls into view.
+     ============================================================ */
+  initLeetCodeCount();
+
+  /* ============================================================
      PHOTOGRAPHY GALLERY
      - Auto-loads every image in images/photographyCollection/
      - Directory listing first (works with python -m http.server,
@@ -288,6 +254,74 @@ document.addEventListener('DOMContentLoaded', () => {
      ============================================================ */
   initPhotographyGallery();
 });
+
+/* -------- LeetCode live count -------- */
+function initLeetCodeCount() {
+  const el = document.getElementById('lc-count');
+  if (!el) return;
+
+  const STATS_URL = 'https://raw.githubusercontent.com/hfeliz03/My-LeetCode-Solutions/main/stats.json';
+  const CACHE_KEY = 'lcSolutionsCount.v2';
+  const CACHE_TTL_MS = 6 * 60 * 60 * 1000;
+  const FALLBACK = '150+';
+
+  let resolved = null;
+  let animated = false;
+
+  try {
+    const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
+    if (cached && Number.isFinite(cached.count) && Date.now() - cached.ts < CACHE_TTL_MS) {
+      resolved = cached.count;
+    }
+  } catch (_) { /* ignore corrupt cache */ }
+
+  const countUp = (target) => {
+    animated = true;
+    const duration = 1400;
+    const start = performance.now();
+    const tick = (now) => {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = Math.floor(eased * target).toString();
+      if (t < 1) requestAnimationFrame(tick);
+      else el.textContent = target.toString();
+    };
+    requestAnimationFrame(tick);
+  };
+
+  const reveal = () => {
+    if (animated) return;
+    if (typeof resolved === 'number') countUp(resolved);
+    else el.textContent = FALLBACK;
+  };
+
+  fetch(STATS_URL, { cache: 'no-cache' })
+    .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+    .then((data) => {
+      const lc = (data && data.leetcode) || {};
+      const count = (lc.easy || 0) + (lc.medium || 0) + (lc.hard || 0);
+      if (!count) return;
+      resolved = count;
+      try { localStorage.setItem(CACHE_KEY, JSON.stringify({ count, ts: Date.now() })); } catch (_) {}
+      if (animated) el.textContent = count.toString();
+    })
+    .catch(() => { /* keep cache or fall back on reveal */ });
+
+  const card = el.closest('.project-card');
+  if (card && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          reveal();
+          io.disconnect();
+        }
+      });
+    }, { threshold: 0.4 });
+    io.observe(card);
+  } else {
+    reveal();
+  }
+}
 
 /* -------- Gallery init -------- */
 async function initPhotographyGallery() {
