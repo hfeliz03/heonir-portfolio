@@ -1,9 +1,7 @@
 # Heonir Feliz — Portfolio
 
 # >>>>> heofeliz.com <<<<<
-Personal portfolio site for Heonir Feliz — developer, AI enthusiast, and Computer Science & Mathematics student from the Dominican Republic.
-
-Built as a static site with vanilla HTML, CSS, and JavaScript — no build step.
+Personal portfolio site for Heonir Feliz, developer, AI enthusiast, and Computer Science & Mathematics student from the Dominican Republic.
 
 ## Sections
 
